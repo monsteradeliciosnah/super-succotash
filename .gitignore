@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.env
+# Node
+node_modules/
+# Mac
+.DS_Store
+# Build
+dist/
+build/
+.cache/
+.coverage
+*.egg-info/
+# VSCode / JetBrains
+.vscode/
+.idea/
+# Data
+data/*
+!.gitkeep

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <meta charset="utf-8">
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 12px; }
+      input { width: 100%; padding: 8px; }
+      #results { margin-top: 12px; max-height: 420px; overflow: auto; border: 1px solid #ddd; }
+      .row { padding: 6px 8px; border-bottom: 1px solid #eee; }
+      .row b { display: inline-block; min-width: 80px; }
+    </style>
+  </head>
+  <body>
+    <input id="q" placeholder="Type to search..." oninput="doSearch()"/>
+    <div id="results"></div>
+    <?!= include('app'); ?>
+  </body>
+</html>

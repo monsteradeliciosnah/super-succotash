@@ -1,0 +1,34 @@
+<script>
+let rows = [];
+let idx = [];
+let headers = [];
+google.script.run.withSuccessHandler(init).getData(JSON.stringify({ limit: 64000 }));
+
+function init(json) {
+  const payload = JSON.parse(json);
+  rows = payload.rows || [];
+  headers = rows.shift();
+  buildIndex();
+  doSearch();
+}
+
+function buildIndex() {
+  idx = rows.map((r, i) => ({ i, t: r.join(' ').toLowerCase() }));
+}
+
+function doSearch() {
+  const q = document.getElementById('q').value.toLowerCase().trim();
+  const out = document.getElementById('results');
+  out.innerHTML = '';
+  if (!q) return;
+  const terms = q.split(/\s+/).filter(Boolean);
+  const hits = idx.filter(x => terms.every(t => x.t.includes(t))).slice(0, 200);
+  for (const h of hits) {
+    const r = rows[h.i];
+    const div = document.createElement('div');
+    div.className = 'row';
+    div.innerHTML = headers.map((h, j) => `<b>${h}</b> ${r[j]}`).join(' • ');
+    out.appendChild(div);
+  }
+}
+</script>
